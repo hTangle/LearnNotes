@@ -1,6 +1,8 @@
 ## ConcurrentHashMap
 1. 如果数组长度小于64，则会进行扩容不会转为红黑树
-2. 
+2. 在进行transfer时支持对线程，将整个transfer任务分解为多个任务单核直接为n，最小值为16
+3. Node数组+链表+红黑树
+4. 线程安全
 ConcurrentHashMap.java
 ```
 public class ConcurrentHashMap<K,V> extends AbstractMap<K,V>
@@ -342,6 +344,8 @@ public class ConcurrentHashMap<K,V> extends AbstractMap<K,V>
                     return e.val;
             }
             else if (eh < 0)
+            //如果eh=-1就说明e节点为ForWordingNode,这说明什么，说明这个节点已经不存在了，被另一个线程正则扩容
+            //所以要查找key对应的值的话，直接到新newtable找
                 return (p = e.find(h, key)) != null ? p.val : null;
             while ((e = e.next) != null) {
                 if (e.hash == h &&
