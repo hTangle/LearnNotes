@@ -1,5 +1,6 @@
 ## ReentrantLock
 #### 实现了Lock和Serializable接口
+#### Sync类继承了AbstractQueuedSynchronizer
 #### 默认非公平锁
 #### 支持可重入
 #### 公平锁的tryAcquire和非公平锁的tryAcquire基本一致，只是再获取锁时先判断当前节点是否有前驱节点
