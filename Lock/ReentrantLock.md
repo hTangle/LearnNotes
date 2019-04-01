@@ -486,6 +486,13 @@ public abstract class AbstractQueuedSynchronizer
                 (transferAfterCancelledWait(node) ? THROW_IE : REINTERRUPT) :
                 0;
         }
+        private void reportInterruptAfterWait(int interruptMode)
+            throws InterruptedException {
+            if (interruptMode == THROW_IE)
+                throw new InterruptedException();
+            else if (interruptMode == REINTERRUPT)
+                selfInterrupt();
+        }
     }
     // 将节点从条件队列转移到阻塞队列
     // true 代表成功转移
