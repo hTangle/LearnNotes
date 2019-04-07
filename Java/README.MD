@@ -53,3 +53,15 @@ protected Class<?> loadClass(String name, boolean resolve)throws ClassNotFoundEx
 
 > AIO：异步，非阻塞
 > IO操作完成以后再给线程发送通知。
+
+### 红黑树和平衡二叉树的区别
+* 平衡二叉树左右子树高度差不超过1，是严格的平衡二叉树，适合插入删除少但查找多的情况
+* *红黑树是弱平衡二叉树，高度一般不小于平衡二叉树，适合搜索插入删除操作的情况下，根节点到叶子节点的最长路径不多于最短路径的两倍，插入删除查找复杂度都是O(logN),**最多3次旋转能够达到平衡**，
+
+### Java反射机制
+* 对于任意一个类，都能够获得这个类的所有属性和方法，运行时动态获取信息以及动态调用对象的方法的功能为反射
+* java.lang.reflect:Field，Method，Constructor
+* 通过三种方法获取字节码对象：
+  1. Object.getClass()
+  2. 静态属性.class
+  3. 给定类的字符串名称Class.forName()-->ClassNotFoundException 

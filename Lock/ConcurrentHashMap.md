@@ -3,6 +3,7 @@
 2. 在进行transfer时支持对线程，将整个transfer任务分解为多个任务单核直接为n，最小值为16
 3. Node数组+链表+红黑树
 4. 线程安全
+5. LongAdder也是分段锁思想：LongAdder类与AtomicLong类的区别在于高并发时前者将对单一变量的CAS操作分散为对数组cells中多个元素的CAS操作，取值时进行求和；而在并发较低时仅对base变量进行CAS操作，与AtomicLong类原理相同。不得不说这种分布式的设计还是很巧妙的。
 ConcurrentHashMap.java
 ```
 public class ConcurrentHashMap<K,V> extends AbstractMap<K,V>

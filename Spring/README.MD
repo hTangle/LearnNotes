@@ -34,3 +34,19 @@ Spring AOP
 * postProcessAfterInitialization
 > 在执行init-method前后会调用以上两个方法
 > 在创建bean之后进行动态代理增强
+
+Bean的生命周期：由IoC容器控制
+1）实例化bean对象（通过构造方法或工厂方法）
+2）设置对象属性（依赖注入）
+3）检查Aware相关接口并设置相关依赖
+4）BeanPostProcessor前置处理
+5）检查是否是InitializingBean以决定是否调用AfterPropertiesSet方法
+6）检查是否配置有自定义的init-method
+7）BeanPostProcessor后置处理
+8）注册必要的Destruction相关回调接口
+9）使用中
+10）是否实现DisposableBean接口
+11）是否配置有自定义destroy方法
+BeanFactory和ApplicationContext
+ApplicationContext提供更多的拓展功能，初始化即加载，自动注册，MessageSource提供国际化消息访问，资源访问，事件传播
+BeanFactory延迟加载，手动注册，不支持AOP
